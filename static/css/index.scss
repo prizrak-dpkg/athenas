@@ -79,6 +79,9 @@ code {
         right: 10px;
         display: none;
         cursor: pointer;
+        background: map-get($map: $color-palette, $key: first);
+        border-radius: 50%;
+        padding: 5px;
 
         @media (max-width: 799px) {
             display: block;
