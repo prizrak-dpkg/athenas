@@ -1,356 +1,478 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 $color-palette: (
-    "first": #333333,
-    "second": #CB0000,
-    "third": #1D96DB,
-    "fourth": #5EBF4B,
-    "fifth": #FB7A38,
-    "sixth": #CB0000,
-    "seventh": #BDE8B4,
-    "eighth": #F08585,
-    "ninth": #ECECEC,
-    "tenth": #FAFAFA,
+  "first": #333333,
+  "second": #CB0000,
+  "third": #1D96DB,
+  "fourth": #5EBF4B,
+  "fifth": #FB7A38,
+  "sixth": #CB0000,
+  "seventh": #BDE8B4,
+  "eighth": #F08585,
+  "ninth": #ECECEC,
+  "tenth": #FAFAFA,
 );
 
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
 
-    &::selection {
-        background-color: map-get($map: $color-palette, $key: first);
-        color: map-get($map: $color-palette, $key: tenth);
+  &::selection {
+    background-color: map-get($map: $color-palette, $key: first);
+    color: map-get($map: $color-palette, $key: tenth);
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px map-get($map: $color-palette, $key: first);
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: map-get($map: $color-palette, $key: first);
+    border-radius: 2px;
+
+    &:hover {
+      background: map-get($map: $color-palette, $key: ninth);
     }
-
-    &::-webkit-scrollbar {
-        width: 4px;
-        height: 4px;
-    }
-
-    &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 2px map-get($map: $color-palette, $key: first);
-        border-radius: 2px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: map-get($map: $color-palette, $key: first);
-        border-radius: 2px;
-
-        &:hover {
-            background: map-get($map: $color-palette, $key: ninth);
-        }
-    }
+  }
 
 }
 
 body,
 .athenas,
 #root {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(180deg, #333333 0%, rgba(51, 51, 51, 0.8) 55.73%, #333333 100%);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #333333 0%, rgba(51, 51, 51, 0.8) 55.73%, #333333 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.field {
+  width: 100%;
+  height: fit-content;
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    &-text {
+      padding-left: 10px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 23px;
+      color: map-get($map: $color-palette, $key: first);
+      user-select: none;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: 50px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: map-get($map: $color-palette, $key: first);
+    border: none;
+    border-bottom: 1px solid map-get($map: $color-palette, $key: second);
+    padding: 10px;
+    margin-bottom: 20px;
+    background: map-get($map: $color-palette, $key: tenth);
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+
+    &:focus-visible {
+      outline: none;
+      border-bottom: 2px solid map-get($map: $color-palette, $key: first);
+    }
+
+    &::placeholder {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 23px;
+      color: map-get($map: $color-palette, $key: first);
+    }
+  }
 }
 
 .navigation {
-    width: 100%;
-    max-width: 1280px;
-    padding: 50px 0px 60px 0px;
-    margin: 0px;
-    user-select: none;
+  width: 100%;
+  max-width: 1280px;
+  padding: 50px 0px 60px 0px;
+  margin: 0px;
+  user-select: none;
 
-    &__toggle {
-        position: absolute;
-        z-index: 1000;
-        top: 50px;
-        right: 10px;
-        display: none;
-        cursor: pointer;
-        background: map-get($map: $color-palette, $key: first);
-        border-radius: 50%;
-        padding: 5px;
+  &__toggle {
+    position: absolute;
+    z-index: 1000;
+    top: 50px;
+    right: 10px;
+    display: none;
+    cursor: pointer;
+    background: map-get($map: $color-palette, $key: first);
+    border-radius: 50%;
+    padding: 5px;
 
-        @media (max-width: 799px) {
-            display: block;
-        }
+    @media (max-width: 799px) {
+      display: block;
+    }
+  }
+
+  &__button {
+    border: none;
+    background: none;
+    color: map-get($map: $color-palette, $key: tenth);
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: map-get($map: $color-palette, $key: second);
+    }
+  }
+
+  &__option {
+    @media (max-width: 799px) {
+      position: absolute;
+      z-index: 1000;
+      width: 100vw;
+      height: 60px;
+      background: map-get($map: $color-palette, $key: first);
+
+      &--home {
+        top: 140px;
+        left: 0px;
+        transform: translateX(-500vw);
+      }
+
+      &--imc {
+        top: 200px;
+        left: 0px;
+        transform: translateX(-500vw);
+      }
+
+      &--crud {
+        top: 260px;
+        left: 0px;
+        transform: translateX(-500vw);
+      }
+
+      &--json {
+        top: 320px;
+        left: 0px;
+        transform: translateX(-500vw);
+      }
+
+      &--show {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &__section {
+    width: 250px;
+  }
+
+  &__item {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    text-decoration: none;
+    text-align: center;
+    color: map-get($map: $color-palette, $key: tenth);
+    width: 100px;
+    display: block;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: map-get($map: $color-palette, $key: second);
     }
 
-    &__button {
-        border: none;
-        background: none;
-        color: map-get($map: $color-palette, $key: tenth);
+    &--active {
+      margin-bottom: 0px;
+      border-bottom: solid 5px map-get($map: $color-palette, $key: second);
+    }
+
+    &--center {
+      padding: 0px;
+      width: fit-content;
+    }
+
+    @media (max-width: 799px) {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 0px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      border-bottom: solid 5px map-get($map: $color-palette, $key: tenth);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom: solid 5px map-get($map: $color-palette, $key: second);
+      }
+
+      &--active {
+        border-bottom: solid 5px map-get($map: $color-palette, $key: second);
+      }
+
+      &--center {
+        border-bottom: none;
 
         &:hover,
         &:focus,
         &:active {
-            color: map-get($map: $color-palette, $key: second);
+          border-bottom: none;
         }
+      }
     }
-
-    &__option {
-        @media (max-width: 799px) {
-            position: absolute;
-            z-index: 1000;
-            width: 100vw;
-            height: 60px;
-            background: map-get($map: $color-palette, $key: first);
-
-            &--home {
-                top: 140px;
-                left: 0px;
-                transform: translateX(-500vw);
-            }
-
-            &--imc {
-                top: 200px;
-                left: 0px;
-                transform: translateX(-500vw);
-            }
-
-            &--crud {
-                top: 260px;
-                left: 0px;
-                transform: translateX(-500vw);
-            }
-
-            &--json {
-                top: 320px;
-                left: 0px;
-                transform: translateX(-500vw);
-            }
-
-            &--show {
-                transform: translateX(0);
-            }
-        }
-    }
-
-    &__section {
-        width: 250px;
-    }
-
-    &__item {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 15px;
-        line-height: 18px;
-        text-decoration: none;
-        text-align: center;
-        color: map-get($map: $color-palette, $key: tenth);
-        width: 100px;
-        display: block;
-        margin-bottom: 5px;
-        padding-top: 5px;
-        padding-bottom: 10px;
-        text-transform: uppercase;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: map-get($map: $color-palette, $key: second);
-        }
-
-        &--active {
-            margin-bottom: 0px;
-            border-bottom: solid 5px map-get($map: $color-palette, $key: second);
-        }
-
-        &--center {
-            padding: 0px;
-            width: fit-content;
-        }
-
-        @media (max-width: 799px) {
-            width: 100%;
-            height: 100%;
-            margin-bottom: 0px;
-            padding-top: 0px;
-            padding-bottom: 0px;
-            border-bottom: solid 5px map-get($map: $color-palette, $key: tenth);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            &:hover,
-            &:focus,
-            &:active {
-                border-bottom: solid 5px map-get($map: $color-palette, $key: second);
-            }
-
-            &--active {
-                border-bottom: solid 5px map-get($map: $color-palette, $key: second);
-            }
-
-            &--center {
-                border-bottom: none;
-
-                &:hover,
-                &:focus,
-                &:active {
-                    border-bottom: none;
-                }
-            }
-        }
-    }
+  }
 }
 
 .banner {
-    box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.8);
-    max-width: 1280px;
-    max-height: 720px;
-    margin-bottom: 50px;
-    user-select: none;
+  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.8);
+  max-width: 1280px;
+  max-height: 720px;
+  margin-bottom: 50px;
+  user-select: none;
 
-    &__item {
-        aspect-ratio: 16/9;
-        background-repeat: no-repeat;
-        background-size: cover;
+  &__item {
+    aspect-ratio: 16/9;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 47px;
+    width: 160px;
+    color: map-get($map: $color-palette, $key: tenth);
+    border-bottom: solid 5px map-get($map: $color-palette, $key: tenth);
+    margin-bottom: 25px;
+    position: relative;
+    left: 55%;
+
+    @media (max-width: 575px) {
+      left: 20%;
     }
-
-    &__title {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 47px;
-        width: 160px;
-        color: map-get($map: $color-palette, $key: tenth);
-        border-bottom: solid 5px map-get($map: $color-palette, $key: tenth);
-        margin-bottom: 25px;
-        position: relative;
-        left: 55%;
-
-        @media (max-width: 575px) {
-            left: 20%;
-        }
-    }
+  }
 }
 
 .main-content {
-    width: 100vw;
-    height: fit-content;
-    padding: 40px;
-    background: map-get($map: $color-palette, $key: tenth);
+  width: 100vw;
+  height: fit-content;
+  padding: 40px;
+  background: map-get($map: $color-palette, $key: tenth);
 
-    &__container {
-        width: 100%;
-        max-width: 1230px;
+  &__container {
+    width: 100%;
+    max-width: 1230px;
+  }
+
+  &__image {
+    position: relative;
+    top: -80px;
+    width: 500px;
+    height: 500px;
+    border: solid 5px map-get($map: $color-palette, $key: first);
+    aspect-ratio: 1 / 1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    user-select: none;
+
+    @media (max-width: 1119px) {
+      width: 400px;
+      height: 400px;
     }
+
+    @media (max-width: 949px) {
+      width: 300px;
+      height: 300px;
+    }
+
+    @media (max-width: 749px) {
+      width: 220px;
+      height: 220px;
+    }
+
+    @media (max-width: 575px) {
+      width: 160px;
+      height: 160px;
+      top: -50px;
+    }
+  }
+
+  &__title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: map-get($map: $color-palette, $key: first);
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    margin: 0px;
+  }
+
+  &__text,
+  &__list {
+    color: map-get($map: $color-palette, $key: first);
+    padding-bottom: 50px;
+    margin: 0px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: justify;
+  }
+
+  &__text {
+    &--bold {
+      font-weight: 700;
+      padding: 0px;
+    }
+  }
+
+  &__list {
+    width: 100%;
+    text-align: start;
+
+    &-item {
+      list-style: square inside;
+    }
+  }
+
+  &__button {
+    width: 200px;
+    height: 40px;
+    border: none;
+    background: map-get($map: $color-palette, $key: first);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: map-get($map: $color-palette, $key: tenth);
+    user-select: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: map-get($map: $color-palette, $key: tenth);
+      background: map-get($map: $color-palette, $key: second);
+    }
+  }
+
+  .imc-card {
+    width: 250px;
+    height: 320px;
+    border-radius: 20px;
+    padding: 30px;
+    background: linear-gradient(180deg, rgba(51, 51, 51, 0.5) 0%, rgba(217, 217, 217, 0) 100%);
 
     &__image {
-        position: relative;
-        top: -80px;
-        width: 500px;
-        height: 500px;
-        border: solid 5px map-get($map: $color-palette, $key: first);
-        aspect-ratio: 1 / 1;
-        background-repeat: no-repeat;
-        background-size: cover;
-        user-select: none;
-
-        @media (max-width: 1119px) {
-            width: 400px;
-            height: 400px;
-        }
-
-        @media (max-width: 949px) {
-            width: 300px;
-            height: 300px;
-        }
-
-        @media (max-width: 749px) {
-            width: 220px;
-            height: 220px;
-        }
-
-        @media (max-width: 575px) {
-            width: 160px;
-            height: 160px;
-            top: -50px;
-        }
+      user-select: none;
     }
 
-    &__text,
-    &__list {
-        padding-bottom: 50px;
-        margin: 0px;
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 23px;
-        text-align: justify;
+    &__info {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 35px;
+      color: map-get($map: $color-palette, $key: first);
+      margin: 0px;
+
+      &--result {
+        max-width: 350px;
+        margin-top: 30px;
+      }
     }
 
-    &__list {
-        width: 100%;
-
-        &-item {
-            list-style: square inside;
-        }
+    &--underweight {
+      background: linear-gradient(180deg, rgba(29, 150, 219, 0.5) 0%, rgba(217, 217, 217, 0) 100%);
     }
 
-
-    &__button {
-        width: 200px;
-        height: 40px;
-        background: map-get($map: $color-palette, $key: first);
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: map-get($map: $color-palette, $key: tenth);
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: map-get($map: $color-palette, $key: tenth);
-            background: map-get($map: $color-palette, $key: second);
-        }
+    &--healthy-weight {
+      background: linear-gradient(180deg, rgba(94, 191, 75, 0.5) 0%, rgba(217, 217, 217, 0) 100%);
     }
+
+    &--overweight {
+      background: linear-gradient(180deg, rgba(251, 122, 56, 0.5) 0%, rgba(217, 217, 217, 0) 100%);
+    }
+
+    &--obesity {
+      background: linear-gradient(180deg, rgba(235, 35, 64, 0.5) 0%, rgba(217, 217, 217, 0) 100%);
+    }
+  }
 }
 
 .footer {
-    padding-top: 50px;
-    padding-bottom: 82px;
-    user-select: none;
+  padding-top: 50px;
+  padding-bottom: 82px;
+  user-select: none;
 
-    &__repo {
-        color: map-get($map: $color-palette, $key: tenth);
-        cursor: pointer;
-        text-decoration: none;
+  &__repo {
+    color: map-get($map: $color-palette, $key: tenth);
+    cursor: pointer;
+    text-decoration: none;
 
-        &:hover,
-        &:focus,
-        &:active {
-            color: map-get($map: $color-palette, $key: second);
-        }
+    &:hover,
+    &:focus,
+    &:active {
+      color: map-get($map: $color-palette, $key: second);
     }
+  }
 
-    &__text {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 15px;
-        line-height: 18px;
-        text-align: center;
-        width: 130px;
-        margin-top: 15px;
-    }
+  &__text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    width: 130px;
+    margin-top: 15px;
+  }
 }

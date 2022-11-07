@@ -69,11 +69,58 @@
     <!-- Inicio bloque de Contenido principal -->
     <div class="d-flex justify-content-center align-items-center main-content">
       <div class="row main-content__container">
-        <div class="col-12 col-sm-6">
-
+        <div class="col-12">
+          <h1 class="main-content__title">Calculadora IMC Adultos</h1>
+          <p class="main-content__text">
+            Esta calculadora proporciona el IMC (índice de masa corporal) y la categoría a la que pertenece según el
+            IMC. Utilícela para adultos de 20 años o más.
+          </p>
         </div>
-        <div class="col-12 col-sm-6">
-
+        <div class="col-12 row px-3">
+          <form class="col-12 col-md-6">
+            <h2 class="main-content__text main-content__text--bold">Instrucciones</h2><br>
+            <ul class="main-content__list">
+              <li class="main-content__list-item">Proporcione su estatura.</li>
+              <li class="main-content__list-item">Proporcione su peso.</li>
+              <li class="main-content__list-item">Presione el botón <span
+                  class="main-content__text--bold">Calcular</span>.</li>
+              <li class="main-content__list-item">Visualice los resultados.</li>
+            </ul>
+            <div class="field">
+              <label class="field__label">
+                <span class="field__label-text">Estatura (Metros)</span>
+                <input class="field__input" type="text" id="height" placeholder="1.72" />
+              </label>
+            </div>
+            <div class="field">
+              <label class="field__label">
+                <span class="field__label-text">Peso (Kilogramos)</span>
+                <input class="field__input" type="text" id="weight" placeholder="62" />
+              </label>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+              <button id="calculateImc" type="submit" class="main-content__button">Calcular</button>
+            </div>
+          </form>
+          <div class="col-12 col-md-6 d-flex flex-column align-items-center">
+            <div class="d-flex flex-column justify-content-between align-items-center mt-5 mt-md-0 imc-card">
+              <div class="imc-card__image">
+                <img class="imc-card__image-item" src="../assets/images/general.svg" alt="General">
+                <img class="d-none imc-card__image-item" src="../assets/images/underweight.svg" alt="Bajo peso">
+                <img class="d-none imc-card__image-item" src="../assets/images/healthy_weight.svg" alt="Peso saludable">
+                <img class="d-none imc-card__image-item" src="../assets/images/overweight.svg" alt="Sobrepeso">
+                <img class="d-none imc-card__image-item" src="../assets/images/obesity.svg" alt="Obesidad">
+              </div>
+              <p class="imc-card__info">-</p>
+            </div>
+            <div id="imcResult">
+              <p class="main-content__text imc-card__info--result">Su IMC es
+                <span class="main-content__text--bold">18.9</span>, lo que indica que su peso esta en la categoría de
+                <span class="main-content__text--bold">Peso saludable</span> para
+                adultos de su estatura.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -98,6 +145,7 @@
   <!-- Inicio carga de Scripts propios -->
   <script src="../static/js/helpers.js"></script>
   <script src="../static/js/index.js"></script>
+  <script src="../static/js/imc.js"></script>
   <!-- Fin carga de Scripts propios -->
 </body>
 
