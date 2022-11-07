@@ -189,6 +189,12 @@ const objJson = [
   },
 ];
 
+/***************************
+ *                         *
+ *   FUNCIONES GENERALES   *
+ *                         *
+ ***************************/
+
 /**
  * Función flecha que obtiene los elementos del DOM que estén entre la etiqueta
  * **img** o **a** y evita que estos sean arrastrados por el usuario.
@@ -203,12 +209,11 @@ const preventDrag = () => {
 };
 
 /**
- * Función flecha que obtiene los elementos del DOM que tengan la clase
+ * @async Función flecha que obtiene los elementos del DOM que tengan la clase
  * **navigation__option** y les remueve la clase **navigation__option--show** en
  * intervalos de 50ms. Oculta el botón para cerrar el menú y muestra el botón
  * para abrirlo.
- * @async
- * @param {Event} event
+ * @param {Event} event Evento **click** del botón para ocultar el menú.
  */
 const hideMenu = async (event) => {
   const hideButton = event.currentTarget;
@@ -234,12 +239,11 @@ const hideMenu = async (event) => {
 };
 
 /**
- * Función flecha que obtiene los elementos del DOM que tengan la clase
+ * @async Función flecha que obtiene los elementos del DOM que tengan la clase
  * **navigation__option** y les agrega la clase **navigation__option--show** en
  * intervalos de 100ms. Oculta el botón para abrir el menú y muestra el botón
  * para cerrarlo.
- * @async
- * @param {Event} event
+ * @param {Event} event Evento **click** del botón para mostrar el menú.
  */
 const showMenu = async (event) => {
   const showButton = event.currentTarget;
@@ -270,8 +274,10 @@ const showMenu = async (event) => {
  * sobre los eventos incorporados en el carrusel de Bootstrap:
  * {@link https://getbootstrap.com/docs/5.2/components/carousel/#events})** La
  * finalidad es capturar la diapositiva que se encuentra activa en el momento y
- * mostrar la información correspondiente.
- * @param {Event} event
+ * mostrar la información correspondiente. Tenemos el índice 0 para **IMC**, 1 para
+ * **CRUD** y 2 para **JSON**.
+ * @param {Event} event Evento **slide.bs.carousel** del carrusel que provee
+ * información sobre el estado de la presentación.
  */
 const detectSlideChange = (event) => {
   const slide = event.to;
@@ -320,10 +326,10 @@ const detectSlideChange = (event) => {
 /**
  * Función flecha que recibe como parámetro un dato de tipo **string** y lo devuelve
  * sin espacios extra.
- * @param {string} text
+ * @param {string} text Cadena que se desea formatear.
  * @returns {string}
  * Devuelve la cadena sin espacios extra, es decir, elimina los
- * espacios extremos e intermedios de más.
+ * espacios de más de los extremos y de entremedios.
  */
 const withoutExtraSpaces = (text) => {
   const spaceRegex = /[\s]+/gi;
@@ -335,7 +341,7 @@ const withoutExtraSpaces = (text) => {
  * devuelve el texto convertido a un dato de tipo **number** si corresponde a un
  * número válido, si el número presenta exceso de puntos decimales devuelve los
  * dos primeros tramos, de lo contrario devuelve **null**.
- * @param {string} text
+ * @param {string} text Cadena que se desea comprobar.
  * @returns {number | null}
  * Retorna dato de tipo **number** o **null** según el parámetro de entrada.
  * @example <caption>Ejemplo de uso:</caption>
@@ -359,11 +365,17 @@ const checkNumber = (text) => {
   return null;
 };
 
+/****************************
+ *                          *
+ *   FUNCIONES MÓDULO IMC   *
+ *                          *
+ ****************************/
+
 /**
  * Función que recibe una cadena y devuelve en un objeto de tipo **HTMLElement**,
  * se puede resaltar texto enviándolo entre un asterisco y un guion de esta
  * manera: \*-texto-\*
- * @param {string} message
+ * @param {string} message Mensaje destinado para el usuario.
  * @returns {HTMLParagraphElement}
  * Retorna un objeto de tipo **HTMLElement** con la cadena enviada.
  * @example <caption>Ejemplo de uso:</caption>
@@ -389,8 +401,8 @@ const getMessageInHtml = (message) => {
 /**
  * Función flecha que recibe el índice que corresponde a la categoría IMC y
  * cambia el color de la tarjeta según corresponda.
- * @param {HTMLElement} cardContainer
- * @param {number} indexCard
+ * @param {HTMLElement} cardContainer Contenedor de las tarjetas del IMC en el DOM.
+ * @param {number} indexCard Índice de la tarjeta correspondiente.
  */
 const changeColorImcCard = (cardContainer, indexCard) => {
   cardContainer.classList.remove(
@@ -422,7 +434,7 @@ const changeColorImcCard = (cardContainer, indexCard) => {
  * el índice de la tarjeta correspondiente a cada categoría, tenemos 0 para
  * **General**, 1 para **Peso inferior al normal**, 2 para **Peso saludable**, 3 para
  * **Sobrepeso** y 4 para **Obesidad**.
- * @param {number} indexCard
+ * @param {number} indexCard Índice de la tarjeta correspondiente.
  */
 const showImcCard = (indexCard) => {
   const imcImages = document.querySelectorAll(".imc-card__image-item");
@@ -448,7 +460,7 @@ const showImcCard = (indexCard) => {
 /**
  * Función flecha que valida la categoría a la que pertenece una persona según su
  * IMC.
- * @param {number} imc
+ * @param {number} imc Valor del IMC.
  * @returns {[string, number]}
  * Retorna la categoría según el valor de IMC y el índice correspondiente de la
  * tarjeta que la representa, tenemos que para un valor por debajo de 18.5
@@ -468,6 +480,16 @@ const getImcCategory = (imc) => {
   }
 };
 
+/**
+ * Función que calcula el IMC con base a la estatura en metros y el peso en
+ * kilogramos.
+ * @param {number} height Estatura en metros.
+ * @param {number} weight Peso en kilogramos.
+ * @returns {[string, string]}
+ * Retorna array de dos (2) elementos tipo **string**, el primero contiene el valor del
+ * IMC con dos decimales de precisión y el segundo con un mensaje que tiene la
+ * categoría a la que pertenece.
+ */
 const calculateImc = (height, weight) => {
   const imc = weight / height ** 2;
   const [category, indexCard] = getImcCategory(imc);
@@ -482,8 +504,8 @@ const calculateImc = (height, weight) => {
  * Función flecha que válida que los datos necesarios para calcular el IMC estén
  * dentro de rangos coherentes, se tiene como **estatura mínima 0.5**, **estatura
  * máxima 2.8**, **peso mínimo 10** y **peso máximo 500**.
- * @param {number | null} height
- * @param {number | null} weight
+ * @param {number} height Estatura en metros.
+ * @param {number} weight Peso en kilogramos.
  * @returns {[string, string]}
  * Retorna un array de dos (2) elementos, el primero de tipo **string** que contiene
  * el valor del IMC y el segundo de tipo **string** que contiene el resultado para
@@ -522,10 +544,10 @@ const validateDataRangeNeededToImc = (height, weight) => {
 /**
  * Función flecha que válida que los datos necesarios para calcular el IMC no sean
  * de tipo **null**.
- * @param {number | null} height
- * @param {number | null} weight
- * @param {HTMLElement} heightElement
- * @param {HTMLElement} weightElement
+ * @param {number | null} height Estatura ingresada por el usuario.
+ * @param {number | null} weight Peso ingresado por el usuario.
+ * @param {HTMLElement} heightElement Input correspondiente a la estatura en el DOM.
+ * @param {HTMLElement} weightElement Input correspondiente al peso en el DOM.
  * @returns {[string, string]}
  * Retorna un array de dos (2) elementos, el primero de tipo **string** que contiene
  * el valor del IMC y el segundo de tipo **string** que contiene el resultado para
@@ -559,7 +581,7 @@ const validateDataNeededToImc = (
 /**
  * Función flecha que intercepta el envío del formulario con los datos necesarios
  * para calcular el IMC. Ejecuta validaciones y devuelve objeto con el resultado.
- * @param {Event} event
+ * @param {Event} event Evento **click** del botón de envío de formulario.
  * @returns {{ imc: string, message: HTMLParagraphElement }}
  * El objeto contiene el valor del IMC de tipo **string** y un objeto de
  * tipo **HTMLElement** con el resultado.
@@ -585,10 +607,16 @@ const getImc = (event) => {
   };
 };
 
+/*****************************
+ *                           *
+ *   FUNCIONES MÓDULO CRUD   *
+ *                           *
+ *****************************/
+
 /**
  * Función que recibe un dato de tipo **string** que corresponde al campo **_id** del
  * usuario y lo usa para buscar el usuario
- * @param {string} id
+ * @param {string} id ID del usuario que se desea obtener.
  * @returns {[{
  * _id: string;
  * name: string;
@@ -615,7 +643,7 @@ const findUser = (id) => {
 /**
  * Función que recibe un dato de tipo **string** que corresponde al campo **_id** del
  * usuario, busca el usuario y llena los campos del modal con sus datos.
- * @param {string} id
+ * @param {string} id ID del usuario que se desea buscar para llenar el formulario.
  */
 const fillFields = (id) => {
   const userId = document.getElementById("userId");
@@ -658,7 +686,7 @@ const fillFields = (id) => {
 /**
  * Función que captura el evento **click** de las tarjetas de usuario e identifica si el
  * usuario quiere crear o editar un usuario.
- * @param {Event} event
+ * @param {Event} event Evento **click** de las tarjetas de usuario.
  */
 const checkUserCard = (event) => {
   const userCard = event.currentTarget;
@@ -684,8 +712,8 @@ const checkUserCard = (event) => {
 /**
  * Función flecha que recibe una **key** y un **value** y devuelve un objeto de tipo
  * **HTMLElement** que los representa.
- * @param {string} key
- * @param {string} value
+ * @param {string} key Llave que será resaltada con negrita.
+ * @param {string} value Valor que ira seguido de dos puntos (:) que siguen a la Llave.
  * @returns {HTMLDivElement}
  * Retorna un objeto de tipo **HTMLElement** que representa los datos suministrados.
  * @example <caption>Ejemplo de uso:</caption>
@@ -709,13 +737,13 @@ const getUserCardInfo = (key, value) => {
 /**
  * Función que recibe datos del usuario y devuelve en un objeto de tipo **HTMLElement**.
  * El objeto representa una tarjeta con los datos del cliente en el DOM.
- * @param {string} id
- * @param {string} name
- * @param {string} balance
- * @param {number} age
- * @param {string} phone
- * @param {string} email
- * @param {boolean} state
+ * @param {string} id ID del usuario.
+ * @param {string} name Nombre del usuario.
+ * @param {string} balance Balance del usuario.
+ * @param {number} age Edad del usuario
+ * @param {string} phone Télefono del usuario.
+ * @param {string} email Correo electrónico del usuario.
+ * @param {boolean} state Estado de actividad del usuario.
  * @returns {HTMLDivElement}
  * Retorna un objeto de tipo **HTMLElement** que representa al cliente en una tarjeta.
  * @example <caption>Ejemplo de uso:</caption>
@@ -828,8 +856,9 @@ const getNewUserCard = () => {
  * age: number;
  * phone: string;
  * email: string;
- * }[]} users
- * @param {HTMLElement} container
+ * }[]} users Listado de usuarios que se renderizará en el DOM.
+ * @param {HTMLElement} container Contenedor dispuesto en el DOM que albergará los
+ * usuarios.
  */
 const renderUsers = (users, container) => {
   const newUserCard = getNewUserCard();
@@ -854,8 +883,9 @@ const renderUsers = (users, container) => {
 /**
  * Función flecha que calcula la página actual y el número de resultados
  * mostrados y lo renderiza en el DOM junto al total de resultados.
- * @param {number} totalResults
- * @param {number} currentResults
+ * @param {number} totalResults Total de registros.
+ * @param {number} currentResults Cantidad de resultados mostrados hasta el
+ * momento.
  */
 const setPaginationInfo = (totalResults, currentResults) => {
   const currentPageElement = document.querySelector(".paginator__page");
@@ -890,9 +920,9 @@ const setPaginationInfo = (totalResults, currentResults) => {
  * age: number;
  * phone: string;
  * email: string;
- * }[]} users
- * @param {number} currentResults
- * @param {string} search
+ * }[]} users Listado de usuarios.
+ * @param {number} currentResults Usuarios mostrados hasta el momento.
+ * @param {string} search Parámetros de búsqueda.
  * @returns {{
  * _id: string;
  * name: string;

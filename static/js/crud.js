@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  /**
+   * Declaración de variables y captura de elementos necesarios del DOM.
+   */
   let currentResults = 0;
   let search = "";
   const usersContainer = document.getElementById("usersContainer");
@@ -17,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveUser = document.getElementById("saveUser");
   const deleteUser = document.getElementById("deleteUser");
   const modalErrors = document.getElementById("modalErrors");
+  /**
+   * Comprobación de que los elementos capturados no contengan un valor **null**.
+   */
   if (
     closeModal !== null &&
     userId !== null &&
@@ -35,7 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteUser !== null &&
     modalErrors !== null
   ) {
+    /**
+     * Se agrega evento **click** al botón que envía el formulario de búsqueda.
+     */
     searchButton.addEventListener("click", (event) => event.preventDefault());
+    /**
+     * Se renderiza por primera vez el listado de usuarios y se agrega evento
+     * **keyup** a la barra de búsqueda.
+     */
     renderUsers(usersPagination(objJson, currentResults), usersContainer);
     searchBar.addEventListener("keyup", (event) => {
       search = event.currentTarget.value;
@@ -47,6 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
         usersContainer
       );
     });
+    /**
+     * Se agrega evento **click** al botón que regresa el paginador.
+     * Válida que los resultados mostrados sean mayores que 0 para poder
+     * regresar
+     */
     prevUsersButton.addEventListener("click", () => {
       if (currentResults > 0) {
         currentResults -= userPerPage;
@@ -56,6 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
         );
       }
     });
+    /**
+     * Se agrega evento **click** al botón que avanza el paginador.
+     * Válida que existan más resultados para mostrar y así poder avanzar.
+     */
     nextUsersButton.addEventListener("click", () => {
       const usersList = usersPagination(
         objJson,
@@ -67,6 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
         renderUsers(usersList, usersContainer);
       }
     });
+    /**
+     * Se agrega evento **click** al botón que cierra el modal.
+     * Al cerrar el modal, el formulario será vaciado.
+     */
     closeModal.addEventListener("click", () => {
       userId.value = "";
       userName.value = "";
@@ -76,8 +102,15 @@ document.addEventListener("DOMContentLoaded", () => {
       userAge.value = "";
       userState.checked = false;
     });
+    /**
+     * Se agrega evento **click** al botón que guarda los usuarios.
+     */
     saveUser.addEventListener("click", (event) => {
       event.preventDefault();
+      /**
+       * Se formatean los valores de cada input del formulario de usuarios,
+       * Se retiran los excesos de espacios.
+       */
       const id = withoutExtraSpaces(userId.value);
       const name = withoutExtraSpaces(userName.value);
       const phone = withoutExtraSpaces(userPhone.value);
@@ -86,6 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const age = withoutExtraSpaces(userAge.value);
       const state = userState.checked;
       const [userFound, index] = findUser(id);
+      /**
+       * Se válida que los campos no estén vacíos, de lo contrario se
+       * mostrará un mensaje al usuario notificando de lo sucedido.
+       */
       if (
         name !== "" &&
         phone !== "" &&
@@ -94,6 +131,11 @@ document.addEventListener("DOMContentLoaded", () => {
         age !== ""
       ) {
         modalErrors.innerText = "";
+        /**
+         * Se válida que los datos ingresados correspondan a un usuario registrado,
+         * en ese caso se actualiza la información, en caso contrario se creara un
+         * nuevo registro.
+         */
         if (userFound !== null) {
           objJson[index]._id = id;
           objJson[index].name = name;
@@ -123,7 +165,13 @@ document.addEventListener("DOMContentLoaded", () => {
         modalErrors.innerText = "** Quedan campos por llenar.";
       }
     });
+    /**
+     * Se agrega evento **click** al botón que elimina los usuarios.
+     */
     deleteUser.addEventListener("click", () => {
+      /**
+       * Se busca el usuario que se desea eliminar a través de su **id** y se procede a eliminar.
+       */
       const id = withoutExtraSpaces(userId.value);
       const [user, index] = findUser(id);
       if (user !== null) {

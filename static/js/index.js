@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  /**
+   * Se agregan eventos a los botones que controlan el despliegue del menu
+   * en dispositivos pequeños.
+   */
   preventDrag();
   const hideMenuButton = document.getElementById("hideMenu");
   const showMenuButton = document.getElementById("showMenu");
