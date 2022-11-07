@@ -112,9 +112,9 @@ El proyecto cuenta con la siguiente estructura:
 ---
 
 - **assets:** Contiene la carpeta **_images_** con los archivos de imágenes del proyecto.
-- **lib:**Contiene los recursos externos, en nuestro caso utilizamos **_Bootstrap v5.2.2_** los archivos JS y CSS estan repartidos en sus carpetas correspondientes.
+- **lib:** Contiene los recursos externos, en nuestro caso utilizamos **_Bootstrap v5.2.2_** los archivos JS y CSS estan repartidos en sus carpetas correspondientes.
 - **pages:** Contiene los archivos HTML que renderizan la aplicación.
-- **static: ** Contiene los archivos JS y CSS propios repartidos en sus carpetas correspondientes.
+- **static:** Contiene los archivos JS y CSS propios repartidos en sus carpetas correspondientes.
 - **index.html:** Es el punto de entrada de la aplicación, la navegación facilita el acceso a todas las funcionalidades.
 - **LICENSE:** Licencia MIT usada en el proyecto.
 - **README.md:** Archivo que contiene información relevante del proyecto.
