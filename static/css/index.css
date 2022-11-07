@@ -27,7 +27,7 @@
   border-radius: 2px;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: #ECECEC;
+  background: #9a9a9a;
 }
 
 body,
@@ -99,7 +99,7 @@ code {
   font-weight: 700;
   font-size: 20px;
   line-height: 23px;
-  color: #333333;
+  color: #9a9a9a;
 }
 .field__input:-ms-input-placeholder {
   font-family: "Roboto";
@@ -107,7 +107,7 @@ code {
   font-weight: 700;
   font-size: 20px;
   line-height: 23px;
-  color: #333333;
+  color: #9a9a9a;
 }
 .field__input::placeholder {
   font-family: "Roboto";
@@ -115,7 +115,7 @@ code {
   font-weight: 700;
   font-size: 20px;
   line-height: 23px;
-  color: #333333;
+  color: #9a9a9a;
 }
 
 .navigation {

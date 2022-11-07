@@ -9,7 +9,7 @@ $color-palette: (
   "sixth": #CB0000,
   "seventh": #BDE8B4,
   "eighth": #F08585,
-  "ninth": #ECECEC,
+  "ninth": #9a9a9a,
   "tenth": #FAFAFA,
 );
 
@@ -116,7 +116,7 @@ code {
       font-weight: 700;
       font-size: 20px;
       line-height: 23px;
-      color: map-get($map: $color-palette, $key: first);
+      color: map-get($map: $color-palette, $key: ninth);
     }
   }
 }
