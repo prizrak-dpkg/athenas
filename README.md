@@ -101,16 +101,6 @@ El proyecto cuenta con la siguiente estructura:
 
 ---
 
-**assets -> images**
-**lib -> bootstrap-> (css - js)**
-**pages**
-**static -> (css - js)**
-**index.html**
-**LICENSE**
-**README.md**
-
----
-
 - **assets:** Contiene la carpeta **_images_** con los archivos de imágenes del proyecto.
 - **lib:** Contiene los recursos externos, en nuestro caso utilizamos **_Bootstrap v5.2.2_** los archivos JS y CSS estan repartidos en sus carpetas correspondientes.
 - **pages:** Contiene los archivos HTML que renderizan la aplicación.
