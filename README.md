@@ -125,9 +125,9 @@ El proyecto cuenta con la siguiente estructura:
 
 Me tomé la libertad de desarrollar una interfaz agradable que permita navegar por las soluciones de los tres (3) enunciados, en cada uno se puede evidenciar la solución al problema planteado, además de incorporar funcionalidades extra:
 
-- **Primer enunciado: **Se puede evidenciar la solución en el módulo **IMC**.
-- **Segundo enunciado: **Se puede evidenciar la solución en el módulo **CRUD**.
-- **Tercer enunciado: **Se puede evidenciar la solución en el módulo **JSON**.
+- **Primer enunciado:** Se puede evidenciar la solución en el módulo **IMC**.
+- **Segundo enunciado:** Se puede evidenciar la solución en el módulo **CRUD**.
+- **Tercer enunciado:** Se puede evidenciar la solución en el módulo **JSON**.
 
 ---
 
