@@ -1,5 +1,5 @@
 ---
-# Athenea
+# Athenas
 ---
 
 Este proyecto responde a la necesidad de cumplir con tres (3) ejercicios planteados en una prueba técnica, los cuales listo a continuación:
