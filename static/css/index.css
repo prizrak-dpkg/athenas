@@ -502,6 +502,19 @@ code {
   font-weight: 700;
   padding: 0px;
 }
+.main-content__text--small {
+  padding: 0px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: #CB0000;
+}
 .main-content__text--user-select-none {
   -webkit-user-select: none;
      -moz-user-select: none;

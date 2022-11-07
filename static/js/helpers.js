@@ -212,22 +212,24 @@ const preventDrag = () => {
  */
 const hideMenu = async (event) => {
   const hideButton = event.currentTarget;
-  const showButton = hideButton.previousElementSibling;
-  hideButton.disabled = true;
-  const options = document.querySelectorAll(".navigation__option");
-  for (let index = options.length - 1; index >= 0; index--) {
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        const element = options[index];
-        element.style.transition = "none";
-        resolve(element.classList.remove("navigation__option--show"));
-      }, 50)
-    );
-  }
-  if (showButton !== null) {
-    showButton.disabled = false;
-    hideButton.classList.add("d-none");
-    showButton.classList.remove("d-none");
+  if (hideButton !== null) {
+    const showButton = hideButton.previousElementSibling;
+    hideButton.disabled = true;
+    const options = document.querySelectorAll(".navigation__option");
+    for (let index = options.length - 1; index >= 0; index--) {
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          const element = options[index];
+          element.style.transition = "none";
+          resolve(element.classList.remove("navigation__option--show"));
+        }, 50)
+      );
+    }
+    if (showButton !== null) {
+      showButton.disabled = false;
+      hideButton.classList.add("d-none");
+      showButton.classList.remove("d-none");
+    }
   }
 };
 
@@ -241,22 +243,24 @@ const hideMenu = async (event) => {
  */
 const showMenu = async (event) => {
   const showButton = event.currentTarget;
-  const hideButton = showButton.nextElementSibling;
-  showButton.disabled = true;
-  const options = document.querySelectorAll(".navigation__option");
-  for (let index = 0; index < options.length; index++) {
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        const element = options[index];
-        element.style.transition = "transform 0.5s";
-        resolve(element.classList.add("navigation__option--show"));
-      }, 100)
-    );
-  }
-  if (hideButton !== null) {
-    hideButton.disabled = false;
-    hideButton.classList.remove("d-none");
-    showButton.classList.add("d-none");
+  if (showButton !== null) {
+    const hideButton = showButton.nextElementSibling;
+    showButton.disabled = true;
+    const options = document.querySelectorAll(".navigation__option");
+    for (let index = 0; index < options.length; index++) {
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          const element = options[index];
+          element.style.transition = "transform 0.5s";
+          resolve(element.classList.add("navigation__option--show"));
+        }, 100)
+      );
+    }
+    if (hideButton !== null) {
+      hideButton.disabled = false;
+      hideButton.classList.remove("d-none");
+      showButton.classList.add("d-none");
+    }
   }
 };
 
@@ -582,6 +586,102 @@ const getImc = (event) => {
 };
 
 /**
+ * Función que recibe un dato de tipo **string** que corresponde al campo **_id** del
+ * usuario y lo usa para buscar el usuario
+ * @param {string} id
+ * @returns {[{
+ * _id: string;
+ * name: string;
+ * isActive: boolean;
+ * balance: string;
+ * age: number;
+ * phone: string;
+ * email: string;
+ * }, number] | [null, number]}
+ * Retorna un array de dos (2) elementos, en caso de encontrar el usuario, el
+ * primer elemento corresponde al usuario y el segundo al índice que ocupa en
+ * **objJson**, si no se encuentra el usuario retornara **null** como primer elemento y
+ * **-1** como el segundo.
+ */
+const findUser = (id) => {
+  const users = objJson.filter((user) => user._id === id);
+  if (users.length > 0) {
+    const user = users[0];
+    return [user, objJson.indexOf(user)];
+  }
+  return [null, -1];
+};
+
+/**
+ * Función que recibe un dato de tipo **string** que corresponde al campo **_id** del
+ * usuario, busca el usuario y llena los campos del modal con sus datos.
+ * @param {string} id
+ */
+const fillFields = (id) => {
+  const userId = document.getElementById("userId");
+  const userName = document.getElementById("userName");
+  const userPhone = document.getElementById("userPhone");
+  const userEmail = document.getElementById("userEmail");
+  const userBalance = document.getElementById("userBalance");
+  const userAge = document.getElementById("userAge");
+  const userState = document.getElementById("userState");
+  if (
+    userId !== null &&
+    userName !== null &&
+    userPhone !== null &&
+    userEmail !== null &&
+    userBalance !== null &&
+    userAge !== null &&
+    userState !== null
+  ) {
+    const [user, index] = findUser(id);
+    if (user !== null) {
+      userId.value = user._id;
+      userName.value = user.name;
+      userPhone.value = user.phone;
+      userEmail.value = user.email;
+      userBalance.value = user.balance;
+      userAge.value = user.age;
+      userState.checked = user.isActive;
+    } else {
+      userId.value = "";
+      userName.value = "";
+      userPhone.value = "";
+      userEmail.value = "";
+      userBalance.value = "";
+      userAge.value = "";
+      userState.checked = false;
+    }
+  }
+};
+
+/**
+ * Función que captura el evento **click** de las tarjetas de usuario e identifica si el
+ * usuario quiere crear o editar un usuario.
+ * @param {Event} event
+ */
+const checkUserCard = (event) => {
+  const userCard = event.currentTarget;
+  const userCardTitle = document.getElementById("userModalLabel");
+  const deleteUserButton = document.getElementById("deleteUser");
+  if (
+    userCard !== null &&
+    userCardTitle !== null &&
+    deleteUserButton !== null
+  ) {
+    const userId = userCard.querySelector(".user-id");
+    if (userId !== null) {
+      userCardTitle.innerText = "Editar Usuario";
+      deleteUserButton.classList.remove("d-none");
+      fillFields(userId.value);
+    } else {
+      userCardTitle.innerText = "Crear Usuario";
+      deleteUserButton.classList.add("d-none");
+    }
+  }
+};
+
+/**
  * Función flecha que recibe una **key** y un **value** y devuelve un objeto de tipo
  * **HTMLElement** que los representa.
  * @param {string} key
@@ -621,7 +721,7 @@ const getUserCardInfo = (key, value) => {
  * @example <caption>Ejemplo de uso:</caption>
  * getUserCard("Angeline Parrish", "+1 (926) 431-3694", "angelineparrish@autograte.com", true) =>
  * <div class="field__card field__card--active" data-bs-toggle="modal" data-bs-target="#userModal">
- * <input type="hidden" value="6362e6b26f6277ba7ba69777">
+ * <input class="user-id" type="hidden" value="6362e6b26f6277ba7ba69777">
  * <p class="field__card-info field__card-info--title field__card-info--state">ACTIVO</p>
  * <div class="field__card-image"></div>
  * <div class="field__card-detail">
@@ -656,6 +756,7 @@ const getUserCard = (id, name, balance, age, phone, email, state) => {
   );
   cardUserId.setAttribute("type", "hidden");
   cardUserId.setAttribute("value", id);
+  cardUserId.classList.add("user-id");
   cardState.classList.add(
     "field__card-info",
     "field__card-info--title",
@@ -732,6 +833,7 @@ const getNewUserCard = () => {
  */
 const renderUsers = (users, container) => {
   const newUserCard = getNewUserCard();
+  newUserCard.addEventListener("click", checkUserCard);
   container.innerHTML = "";
   container.appendChild(newUserCard);
   users.forEach((user) => {
@@ -744,6 +846,7 @@ const renderUsers = (users, container) => {
       user.email,
       user.isActive
     );
+    userCard.addEventListener("click", checkUserCard);
     container.appendChild(userCard);
   });
 };

@@ -129,10 +129,11 @@
         <div class="user-modal__content">
           <div class="modal-header">
             <h1 class="w-100 user-modal__title main-content__text--user-select-none" id="userModalLabel">-</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModal" aria-label="Close"></button>
           </div>
           <div class="modal-body d-flex justify-content-center">
-            <form class="d-flex flex-column align-items-center w-75">
+            <form class="d-flex flex-column align-items-center w-75" id="userForm">
+              <input type="hidden" id="userId">
               <div class="field">
                 <label class="field__label">
                   <span class="field__label-text">Nombre</span>
@@ -175,8 +176,11 @@
           </div>
           <div class="modal-footer">
             <div class="d-flex justify-content-around row w-100">
+              <div id="modalErrors"
+                class="col-12 main-content__text main-content__text--center main-content__text--small"></div>
               <button id="deleteUser" type="button" class="col-12 main-content__button mt-3 d-none">Eliminar</button>
-              <button id="saveUser" type="button" class="col-12 main-content__button mt-3">Guardar</button>
+              <button id="saveUser" type="submit" form="userForm"
+                class="col-12 main-content__button mt-3">Guardar</button>
             </div>
           </div>
         </div>
