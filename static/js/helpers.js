@@ -1,4 +1,195 @@
 /**
+ * Número de resultados por página, empleado en el módulo CRUD.
+ */
+const userPerPage = 4;
+
+/**
+ * Objeto que simula una base de datos, empleado en el módulo CRUD.
+ */
+const objJson = [
+  {
+    _id: "6362e6b26f6277ba7ba69777",
+    name: "Angeline Parrish",
+    isActive: true,
+    balance: "$3,880.63",
+    age: 26,
+    phone: "+1 (926) 431-3694",
+    email: "angelineparrish@autograte.com",
+  },
+  {
+    _id: "6362e6b2bca1ca1a5cd0b039",
+    name: "Melanie Lynch",
+    isActive: false,
+    balance: "$3,768.79",
+    age: 20,
+    phone: "+1 (884) 443-2446",
+    email: "melanielynch@autograte.com",
+  },
+  {
+    _id: "6362e6b2d6d6c0ddf696d17d",
+    name: "Augusta Molina",
+    isActive: false,
+    balance: "$1,549.52",
+    age: 30,
+    phone: "+1 (809) 437-2058",
+    email: "augustamolina@autograte.com",
+  },
+  {
+    _id: "6362e6b2ba2dac391e1ed831",
+    name: "Jennie Roberts",
+    isActive: false,
+    balance: "$2,933.80",
+    age: 20,
+    phone: "+1 (926) 437-3060",
+    email: "jennieroberts@autograte.com",
+  },
+  {
+    _id: "6362e6b2612e872e9a96451e",
+    name: "Lewis Bell",
+    isActive: false,
+    balance: "$2,235.54",
+    age: 29,
+    phone: "+1 (912) 489-2473",
+    email: "lewisbell@autograte.com",
+  },
+  {
+    _id: "6362e6b2710cbf7d2a7ae5ee",
+    name: "Pansy Monroe",
+    isActive: true,
+    balance: "$2,971.44",
+    age: 38,
+    phone: "+1 (953) 429-3769",
+    email: "pansymonroe@autograte.com",
+  },
+  {
+    _id: "6362e6b266c5775990c9d23a",
+    name: "Santos Fitzpatrick",
+    isActive: true,
+    balance: "$1,090.86",
+    age: 25,
+    phone: "+1 (961) 445-2409",
+    email: "santosfitzpatrick@autograte.com",
+  },
+  {
+    _id: "6362e6b2da97ec502a07c7d2",
+    name: "Terry Pace",
+    isActive: false,
+    balance: "$1,938.40",
+    age: 29,
+    phone: "+1 (850) 489-3795",
+    email: "terrypace@autograte.com",
+  },
+  {
+    _id: "6362e6b20e1b72c76d8d8e07",
+    name: "Humphrey Villarreal",
+    isActive: true,
+    balance: "$1,004.37",
+    age: 24,
+    phone: "+1 (812) 442-3190",
+    email: "humphreyvillarreal@autograte.com",
+  },
+  {
+    _id: "6362e6b21e3951162c3a5c6e",
+    name: "Owen Mccullough",
+    isActive: false,
+    balance: "$1,370.74",
+    age: 35,
+    phone: "+1 (872) 590-3312",
+    email: "owenmccullough@autograte.com",
+  },
+  {
+    _id: "6362e6b2d5569d7509c065e9",
+    name: "Merritt Mathis",
+    isActive: false,
+    balance: "$2,582.94",
+    age: 33,
+    phone: "+1 (984) 575-2519",
+    email: "merrittmathis@autograte.com",
+  },
+  {
+    _id: "6362e6b216eb38ef4e0ff02a",
+    name: "Cunningham Wynn",
+    isActive: false,
+    balance: "$1,890.79",
+    age: 27,
+    phone: "+1 (933) 417-2172",
+    email: "cunninghamwynn@autograte.com",
+  },
+  {
+    _id: "6362e6b22d9a84ec4efa6328",
+    name: "Sloan Dalton",
+    isActive: false,
+    balance: "$1,260.23",
+    age: 30,
+    phone: "+1 (947) 490-3756",
+    email: "sloandalton@autograte.com",
+  },
+  {
+    _id: "6362e6b227b118ff92deb1c0",
+    name: "Essie Gallagher",
+    isActive: true,
+    balance: "$2,370.73",
+    age: 38,
+    phone: "+1 (916) 406-2251",
+    email: "essiegallagher@autograte.com",
+  },
+  {
+    _id: "6362e6b2b0b0ae5c08a7c068",
+    name: "Burke Snow",
+    isActive: true,
+    balance: "$1,318.09",
+    age: 20,
+    phone: "+1 (940) 575-3516",
+    email: "burkesnow@autograte.com",
+  },
+  {
+    _id: "6362e6b23cc110872e89e970",
+    name: "Gonzales Fletcher",
+    isActive: false,
+    balance: "$1,656.04",
+    age: 35,
+    phone: "+1 (832) 524-2249",
+    email: "gonzalesfletcher@autograte.com",
+  },
+  {
+    _id: "6362e6b213f1be555539cf51",
+    name: "Sybil Kirby",
+    isActive: true,
+    balance: "$2,637.16",
+    age: 33,
+    phone: "+1 (984) 525-3352",
+    email: "sybilkirby@autograte.com",
+  },
+  {
+    _id: "6362e6b225b479b9c5b24774",
+    name: "Mitchell Slater",
+    isActive: false,
+    balance: "$2,645.01",
+    age: 23,
+    phone: "+1 (981) 403-2326",
+    email: "mitchellslater@autograte.com",
+  },
+  {
+    _id: "6362e6b2528c1a575132e8d6",
+    name: "Brown Valenzuela",
+    isActive: true,
+    balance: "$2,295.76",
+    age: 25,
+    phone: "+1 (864) 466-2534",
+    email: "brownvalenzuela@autograte.com",
+  },
+  {
+    _id: "6362e6b247130ab401a6b3e4",
+    name: "Ada Owen",
+    isActive: true,
+    balance: "$1,267.32",
+    age: 36,
+    phone: "+1 (853) 435-3562",
+    email: "adaowen@autograte.com",
+  },
+];
+
+/**
  * Función flecha que obtiene los elementos del DOM que estén entre la etiqueta
  * **img** o **a** y evita que estos sean arrastrados por el usuario.
  */
@@ -133,6 +324,35 @@ const detectSlideChange = (event) => {
 const withoutExtraSpaces = (text) => {
   const spaceRegex = /[\s]+/gi;
   return text.trim().replace(spaceRegex, " ");
+};
+
+/**
+ * Función flecha que recibe una variable de tipo **string** como parámetro y
+ * devuelve el texto convertido a un dato de tipo **number** si corresponde a un
+ * número válido, si el número presenta exceso de puntos decimales devuelve los
+ * dos primeros tramos, de lo contrario devuelve **null**.
+ * @param {string} text
+ * @returns {number | null}
+ * Retorna dato de tipo **number** o **null** según el parámetro de entrada.
+ * @example <caption>Ejemplo de uso:</caption>
+ * checkNumber("") => Salida(null).
+ * checkNumber("Example") => Salida(null).
+ * checkNumber("15.15646.654") => Salida(15.15646).
+ * checkNumber("3.1416") => Salida(3.1416)
+ * checkNumber("3") => Salida(3)
+ */
+const checkNumber = (text) => {
+  const numberRegex = /^[\d.]+$/;
+  const match = numberRegex.test(text);
+  if (match) {
+    const numberSplit = text.split(".");
+    if (numberSplit.length > 1) {
+      return parseFloat(`${numberSplit[0]}.${numberSplit[1]}`);
+    } else {
+      return parseFloat(numberSplit[0]);
+    }
+  }
+  return null;
 };
 
 /**
@@ -333,35 +553,6 @@ const validateDataNeededToImc = (
 };
 
 /**
- * Función flecha que recibe una variable de tipo **string** como parámetro y
- * devuelve el texto convertido a un dato de tipo **number** si corresponde a un
- * número válido, si el número presenta exceso de puntos decimales devuelve los
- * dos primeros tramos, de lo contrario devuelve **null**.
- * @param {string} text
- * @returns {number | null}
- * Retorna dato de tipo **number** o **null** según el parámetro de entrada.
- * @example <caption>Ejemplo de uso:</caption>
- * checkNumber("") => Salida(null).
- * checkNumber("Example") => Salida(null).
- * checkNumber("15.15646.654") => Salida(15.15646).
- * checkNumber("3.1416") => Salida(3.1416)
- * checkNumber("3") => Salida(3)
- */
-const checkNumber = (text) => {
-  const numberRegex = /^[\d.]+$/;
-  const match = numberRegex.test(text);
-  if (match) {
-    const numberSplit = text.split(".");
-    if (numberSplit.length > 1) {
-      return parseFloat(`${numberSplit[0]}.${numberSplit[1]}`);
-    } else {
-      return parseFloat(numberSplit[0]);
-    }
-  }
-  return null;
-};
-
-/**
  * Función flecha que intercepta el envío del formulario con los datos necesarios
  * para calcular el IMC. Ejecuta validaciones y devuelve objeto con el resultado.
  * @param {Event} event
@@ -388,4 +579,239 @@ const getImc = (event) => {
     IMC: "-",
     message: document.createElement("p"),
   };
+};
+
+/**
+ * Función flecha que recibe una **key** y un **value** y devuelve un objeto de tipo
+ * **HTMLElement** que los representa.
+ * @param {string} key
+ * @param {string} value
+ * @returns {HTMLDivElement}
+ * Retorna un objeto de tipo **HTMLElement** que representa los datos suministrados.
+ * @example <caption>Ejemplo de uso:</caption>
+ * getUserCardInfo("Télefono", "+1 (926) 431-3694") =>
+ * <span class="field__card-info">
+ * <span class="field__card-info--bold">Télefono: </span>
+ * +1 (926) 431-3694
+ * </span>
+ */
+const getUserCardInfo = (key, value) => {
+  const cardInfo = document.createElement("span");
+  const cardKey = document.createElement("span");
+  cardInfo.classList.add("field__card-info");
+  cardKey.classList.add("field__card-info--bold");
+  cardKey.innerText = key;
+  cardInfo.appendChild(cardKey);
+  cardInfo.append(value);
+  return cardInfo;
+};
+
+/**
+ * Función que recibe datos del usuario y devuelve en un objeto de tipo **HTMLElement**.
+ * El objeto representa una tarjeta con los datos del cliente en el DOM.
+ * @param {string} id
+ * @param {string} name
+ * @param {string} balance
+ * @param {number} age
+ * @param {string} phone
+ * @param {string} email
+ * @param {boolean} state
+ * @returns {HTMLDivElement}
+ * Retorna un objeto de tipo **HTMLElement** que representa al cliente en una tarjeta.
+ * @example <caption>Ejemplo de uso:</caption>
+ * getUserCard("Angeline Parrish", "+1 (926) 431-3694", "angelineparrish@autograte.com", true) =>
+ * <div class="field__card field__card--active" data-bs-toggle="modal" data-bs-target="#userModal">
+ * <input type="hidden" value="6362e6b26f6277ba7ba69777">
+ * <p class="field__card-info field__card-info--title field__card-info--state">ACTIVO</p>
+ * <div class="field__card-image"></div>
+ * <div class="field__card-detail">
+ * <span class="field__card-info"><span class="field__card-info--bold">Nombre: </span>
+ * Angeline Parrish</span>
+ * <span class="field__card-info"><span class="field__card-info--bold">Télefono: </span>
+ * +1 (926) 431-3694</span>
+ * <span class="field__card-info"><span class="field__card-info--bold">E-mail: </span>
+ * angelineparrish@autograte.com</span>
+ * <span class="field__card-info"><span class="field__card-info--bold">Balance: </span>
+ * $3,880.63</span><span class="field__card-info">
+ * <span class="field__card-info--bold">Edad: </span>26</span>
+ * </div>
+ * </div>
+ */
+const getUserCard = (id, name, balance, age, phone, email, state) => {
+  const cardContainer = document.createElement("div");
+  const cardUserId = document.createElement("input");
+  const cardState = document.createElement("p");
+  const cardImage = document.createElement("div");
+  const cardDetail = document.createElement("div");
+  const cardName = getUserCardInfo("Nombre: ", name);
+  const cardBalance = getUserCardInfo("Balance: ", balance);
+  const cardAge = getUserCardInfo("Edad: ", `${age}`);
+  const cardPhone = getUserCardInfo("Télefono: ", phone);
+  const cardEmail = getUserCardInfo("E-mail: ", email);
+  cardContainer.setAttribute("data-bs-toggle", "modal");
+  cardContainer.setAttribute("data-bs-target", "#userModal");
+  cardContainer.classList.add(
+    "field__card",
+    state ? "field__card--active" : "field__card--inactive"
+  );
+  cardUserId.setAttribute("type", "hidden");
+  cardUserId.setAttribute("value", id);
+  cardState.classList.add(
+    "field__card-info",
+    "field__card-info--title",
+    "field__card-info--state"
+  );
+  cardState.innerText = state ? "ACTIVO" : "INACTIVO";
+  cardImage.classList.add("field__card-image");
+  cardDetail.classList.add("field__card-detail");
+  cardDetail.appendChild(cardName);
+  cardDetail.appendChild(cardPhone);
+  cardDetail.appendChild(cardEmail);
+  cardDetail.appendChild(cardBalance);
+  cardDetail.appendChild(cardAge);
+  cardContainer.appendChild(cardUserId);
+  cardContainer.appendChild(cardState);
+  cardContainer.appendChild(cardImage);
+  cardContainer.appendChild(cardDetail);
+  return cardContainer;
+};
+
+/**
+ * Función flecha que retorna un objeto de tipo **HTMLElement** para crear un nuevo registro.
+ * @returns {HTMLDivElement}
+ * Retorna un objeto de tipo **HTMLElement** que representa una tarjeta para crear un nuevo usuario.
+ * @example <caption>Ejemplo de uso:</caption>
+ * getNewUserCard() =>
+ * <div class="field__card" data-bs-toggle="modal" data-bs-target="#userModal">
+ * <div class="field__card-image">
+ * </div><div class="field__card-detail">
+ * <span class="field__card-info field__card-info--title field__card-info--center">Crear Registro</span>
+ * <span class="field__card-info field__card-info--center">Nuevo Usuario</span>
+ * </div>
+ * </div>
+ */
+const getNewUserCard = () => {
+  const cardContainer = document.createElement("div");
+  const cardImage = document.createElement("div");
+  const cardDetail = document.createElement("div");
+  const cardTitle = document.createElement("span");
+  const cardText = document.createElement("span");
+  cardContainer.setAttribute("data-bs-toggle", "modal");
+  cardContainer.setAttribute("data-bs-target", "#userModal");
+  cardContainer.classList.add("field__card");
+  cardImage.classList.add("field__card-image");
+  cardDetail.classList.add("field__card-detail");
+  cardTitle.classList.add(
+    "field__card-info",
+    "field__card-info--title",
+    "field__card-info--center"
+  );
+  cardText.classList.add("field__card-info", "field__card-info--center");
+  cardTitle.innerText = "Crear Registro";
+  cardText.innerText = "Nuevo Usuario";
+  cardDetail.appendChild(cardTitle);
+  cardDetail.appendChild(cardText);
+  cardContainer.appendChild(cardImage);
+  cardContainer.appendChild(cardDetail);
+  return cardContainer;
+};
+
+/**
+ * Función flecha que recibe un array de objetos tipo **Usuario** y un contenedor
+ * tipo **HTMLElement** y los renderiza en el DOM.
+ * @param {{
+ * _id: string;
+ * name: string;
+ * isActive: boolean;
+ * balance: string;
+ * age: number;
+ * phone: string;
+ * email: string;
+ * }[]} users
+ * @param {HTMLElement} container
+ */
+const renderUsers = (users, container) => {
+  const newUserCard = getNewUserCard();
+  container.innerHTML = "";
+  container.appendChild(newUserCard);
+  users.forEach((user) => {
+    const userCard = getUserCard(
+      user._id,
+      user.name,
+      user.balance,
+      user.age,
+      user.phone,
+      user.email,
+      user.isActive
+    );
+    container.appendChild(userCard);
+  });
+};
+
+/**
+ * Función flecha que calcula la página actual y el número de resultados
+ * mostrados y lo renderiza en el DOM junto al total de resultados.
+ * @param {number} totalResults
+ * @param {number} currentResults
+ */
+const setPaginationInfo = (totalResults, currentResults) => {
+  const currentPageElement = document.querySelector(".paginator__page");
+  const currentResultsElement = document.getElementById("currentResults");
+  const totalResultsElement = document.getElementById("totalResults");
+  if (
+    currentPageElement !== null &&
+    currentResultsElement !== null &&
+    totalResultsElement !== null
+  ) {
+    const displayedResults =
+      currentResults + userPerPage > totalResults
+        ? totalResults
+        : currentResults + userPerPage;
+    const currentPage = Math.ceil(displayedResults / userPerPage);
+    currentPageElement.innerText = currentPage;
+    currentResultsElement.innerText = displayedResults;
+    totalResultsElement.innerText = totalResults;
+  }
+};
+
+/**
+ * Función que recibe un array de objetos tipo **Usuario** y la página actual en la
+ * que se encuentra y devuelve una copia del array sin modificar el original.
+ * Además si se recibe un texto de búsqueda, se filtrara por el nombre del
+ * usuario.
+ * @param {{
+ * _id: string;
+ * name: string;
+ * isActive: boolean;
+ * balance: string;
+ * age: number;
+ * phone: string;
+ * email: string;
+ * }[]} users
+ * @param {number} currentResults
+ * @param {string} search
+ * @returns {{
+ * _id: string;
+ * name: string;
+ * isActive: boolean;
+ * balance: string;
+ * age: number;
+ * phone: string;
+ * email: string;
+ * }[]}
+ * Devuelve una copia de un array con **userPerPage** (n) cantidad de objetos de
+ * tipo **Usuario** sin modificar el arreglo original que recibe como entrada.
+ */
+const usersPagination = (users, currentResults, search = "") => {
+  if (search.length === 0) {
+    const totalResults = users.length;
+    setPaginationInfo(totalResults, currentResults);
+    return users.slice(currentResults, currentResults + userPerPage);
+  }
+  const usersSearch = users.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  );
+  const totalResults = usersSearch.length;
+  setPaginationInfo(totalResults, currentResults);
+  return usersSearch.slice(currentResults, currentResults + userPerPage);
 };

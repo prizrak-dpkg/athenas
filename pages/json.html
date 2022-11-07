@@ -68,11 +68,47 @@
     <!-- Inicio bloque de Contenido principal -->
     <div class="d-flex justify-content-center align-items-center main-content">
       <div class="row main-content__container">
-        <div class="col-12 col-sm-6">
-
+        <div class="col-12">
+          <h1 class="main-content__title">JSON</h1>
+          <p class="main-content__text">
+            Este sistema genera un objeto de tipo JSON, capturando los valores de las cajas de texto. Utilice los
+            botones de <span class="main-content__text--bold">Agregar</span> o <span
+              class="main-content__text--bold">Eliminar</span> para agregar un campo más o eliminarlo
+            si así lo requiere. Al finalizar,
+            presione el botón <span class="main-content__text--bold">Generar JSON</span> para ver el resultado.
+          </p>
         </div>
-        <div class="col-12 col-sm-6">
-
+        <div class="col-12 row px-3">
+          <div class="col-12 col-md-6">
+            <form class="json-form" id="fieldsForm">
+            </form>
+            <div class="d-none">
+              <div class="field" id="mainField">
+                <label class="field__label">
+                  <span class="field__label-text dynamic__label">Campo *</span>
+                  <input class="field__input dynamic__input" type="text" id="*" placeholder="user_*" />
+                </label>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+              <button type="button" id="addField" class="main-content__button">
+                Agregar
+              </button>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+              <button type="button" id="removeField" class="main-content__button" disabled="">
+                Eliminar
+              </button>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 d-flex flex-column align-items-center">
+            <div class="d-flex flex-column align-items-center mt-3 w-100">
+              <textarea id="jsonContainer" class="json-area"></textarea>
+              <button type="submit" id="getJson" form="fieldsForm" class="main-content__button" disabled="">
+                Generar JSON
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -97,6 +133,7 @@
   <!-- Inicio carga de Scripts propios -->
   <script src="../static/js/helpers.js"></script>
   <script src="../static/js/index.js"></script>
+  <script src="../static/js/json.js"></script>
   <!-- Fin carga de Scripts propios -->
 </body>
 

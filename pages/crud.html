@@ -68,11 +68,117 @@
     <!-- Inicio bloque de Contenido principal -->
     <div class="d-flex justify-content-center align-items-center main-content">
       <div class="row main-content__container">
-        <div class="col-12 col-sm-6">
-
+        <div class="col-12">
+          <h1 class="main-content__title">CRUD</h1>
+          <p class="main-content__text">
+            Este sistema simula las operaciones CRUD que normalmente se realizan en una base de datos, salvo que se
+            utilizan objetos de JavaScript en este caso. Siéntase libre de crear, buscar, editar y eliminar registros.
+          </p>
         </div>
-        <div class="col-12 col-sm-6">
-
+        <div class="col-12">
+          <div class="field--search-container">
+            <form class="field">
+              <button class="field__input-icon" id="searchButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-search field__icon" viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+              </button>
+              <div class="field">
+                <label class="field__label">
+                  <input class="field__input field__input--padding-icon" id="searchBar" type="text"
+                    placeholder="Busca un usuario" />
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="field field--grid" id="usersContainer"></div>
+        </div>
+        <div class="col-12 d-flex flex-column align-items-center">
+          <div class="d-flex flex-row justify-content-between paginator">
+            <button class="d-flex justify-content-center align-items-center paginator__button" id="prevUsers">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-chevron-left field__icon" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+              </svg>
+            </button>
+            <span class="d-flex justify-content-center align-items-center paginator__page">-</span>
+            <button class="d-flex justify-content-center align-items-center paginator__button" id="nextUsers">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-chevron-right field__icon" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </button>
+          </div>
+          <p class="main-content__text main-content__text--center main-content__text--user-select-none pt-4">Mostrando
+            <span class="main-content__text--bold" id="currentResults">-</span> de <span
+              class="main-content__text--bold" id="totalResults">-</span> usuarios
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="userModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="userModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="user-modal__content">
+          <div class="modal-header">
+            <h1 class="w-100 user-modal__title main-content__text--user-select-none" id="userModalLabel">-</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex justify-content-center">
+            <form class="d-flex flex-column align-items-center w-75">
+              <div class="field">
+                <label class="field__label">
+                  <span class="field__label-text">Nombre</span>
+                  <input class="field__input" type="text" id="userName" placeholder="Angeline Parrish" />
+                </label>
+              </div>
+              <div class="field">
+                <label class="field__label">
+                  <span class="field__label-text">Télefono</span>
+                  <input class="field__input" type="text" id="userPhone" placeholder="+1 (926) 431-3694" />
+                </label>
+              </div>
+              <div class="field">
+                <label class="field__label">
+                  <span class="field__label-text">E-mail</span>
+                  <input class="field__input" type="text" id="userEmail" placeholder="angelineparrish@autograte.com" />
+                </label>
+              </div>
+              <div class="field">
+                <label class="field__label">
+                  <span class="field__label-text">Balance</span>
+                  <input class="field__input" type="text" id="userBalance" placeholder="3880.63" />
+                </label>
+              </div>
+              <div class="field">
+                <label class="field__label">
+                  <span class="field__label-text">Edad</span>
+                  <input class="field__input" type="text" id="userAge" placeholder="26" />
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="userState">
+                <label
+                  class="form-check-label main-content__text main-content__text--bold main-content__text--user-select-none"
+                  for="userState">
+                  Usuario Activo
+                </label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="d-flex justify-content-around row w-100">
+              <button id="deleteUser" type="button" class="col-12 main-content__button mt-3 d-none">Eliminar</button>
+              <button id="saveUser" type="button" class="col-12 main-content__button mt-3">Guardar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -97,6 +203,7 @@
   <!-- Inicio carga de Scripts propios -->
   <script src="../static/js/helpers.js"></script>
   <script src="../static/js/index.js"></script>
+  <script src="../static/js/crud.js"></script>
   <!-- Fin carga de Scripts propios -->
 </body>
 

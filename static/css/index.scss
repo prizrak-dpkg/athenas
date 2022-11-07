@@ -3,14 +3,10 @@
 $color-palette: (
   "first": #333333,
   "second": #CB0000,
-  "third": #1D96DB,
-  "fourth": #5EBF4B,
-  "fifth": #FB7A38,
-  "sixth": #CB0000,
-  "seventh": #BDE8B4,
-  "eighth": #F08585,
-  "ninth": #ECECEC,
-  "tenth": #FAFAFA,
+  "third": #BDE8B4,
+  "fourth": #F08585,
+  "fifth": #ECECEC,
+  "sixth": #FAFAFA,
 );
 
 * {
@@ -22,7 +18,7 @@ $color-palette: (
 
   &::selection {
     background-color: map-get($map: $color-palette, $key: first);
-    color: map-get($map: $color-palette, $key: tenth);
+    color: map-get($map: $color-palette, $key: sixth);
   }
 
   &::-webkit-scrollbar {
@@ -40,7 +36,7 @@ $color-palette: (
     border-radius: 2px;
 
     &:hover {
-      background: map-get($map: $color-palette, $key: ninth);
+      background: map-get($map: $color-palette, $key: fifth);
     }
   }
 
@@ -100,7 +96,7 @@ code {
     border-bottom: 1px solid map-get($map: $color-palette, $key: second);
     padding: 10px;
     margin-bottom: 20px;
-    background: map-get($map: $color-palette, $key: tenth);
+    background: map-get($map: $color-palette, $key: sixth);
     border-radius: 10px;
     margin-top: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -116,8 +112,169 @@ code {
       font-weight: 700;
       font-size: 20px;
       line-height: 23px;
-      color: map-get($map: $color-palette, $key: ninth);
+      color: map-get($map: $color-palette, $key: fifth);
     }
+
+    &-icon {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: none;
+      background: none;
+      left: calc(15% + 10px);
+      top: 50%;
+      transform: translateY(calc(-50% - 10px));
+      color: map-get($map: $color-palette, $key: first);
+
+      &:hover,
+      &:active {
+        cursor: pointer;
+        color: map-get($map: $color-palette, $key: second);
+      }
+
+      @media (max-width: 599px) {
+        left: 10px;
+      }
+    }
+
+    &--padding-icon {
+      padding-left: 36px;
+    }
+  }
+
+  &__icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__card {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    background: map-get($map: $color-palette, $key: fifth);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: map-get($map: $color-palette, $key: first);
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    &-image {
+      position: absolute;
+      left: calc(50% - 50px);
+      background: url(../../assets/images/blank_profile.png) 0% 0% / cover no-repeat;
+      top: 50px;
+      width: 100px;
+      height: 100px;
+      border: 2px solid map-get($map: $color-palette, $key: sixth);
+      filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.25));
+      border-radius: 15px;
+      z-index: 10;
+    }
+
+    &-detail {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: fit-content;
+      position: absolute;
+      bottom: 20px;
+    }
+
+    &-info {
+      width: 80%;
+      margin: 0px;
+      padding: 0px;
+      text-align: start;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      user-select: none;
+
+      &--center {
+        text-align: center;
+      }
+
+      &--bold {
+        font-weight: 700;
+      }
+
+      &--title {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+      }
+
+      &--state {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+      }
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0px;
+      width: 200px;
+      height: 100px;
+      background: map-get($map: $color-palette, $key: sixth);
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      cursor: pointer;
+      color: map-get($map: $color-palette, $key: sixth);
+      background: map-get($map: $color-palette, $key: first);
+
+      &::after {
+        background: map-get($map: $color-palette, $key: second);
+      }
+    }
+
+    &--active {
+      background: map-get($map: $color-palette, $key: third);
+    }
+
+    &--inactive {
+      background: map-get($map: $color-palette, $key: fourth);
+    }
+  }
+
+
+  &--search-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    padding: 0px 15%;
+
+    @media (max-width: 599px) {
+      padding: 0px;
+    }
+  }
+
+  &--grid {
+    display: grid;
+    gap: 40px;
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 200px));
+    place-items: center center;
+    margin-top: 20px;
+    justify-content: center;
   }
 }
 
@@ -147,7 +304,7 @@ code {
   &__button {
     border: none;
     background: none;
-    color: map-get($map: $color-palette, $key: tenth);
+    color: map-get($map: $color-palette, $key: sixth);
 
     &:hover,
     &:focus,
@@ -206,7 +363,7 @@ code {
     line-height: 18px;
     text-decoration: none;
     text-align: center;
-    color: map-get($map: $color-palette, $key: tenth);
+    color: map-get($map: $color-palette, $key: sixth);
     width: 100px;
     display: block;
     margin-bottom: 5px;
@@ -236,7 +393,7 @@ code {
       margin-bottom: 0px;
       padding-top: 0px;
       padding-bottom: 0px;
-      border-bottom: solid 5px map-get($map: $color-palette, $key: tenth);
+      border-bottom: solid 5px map-get($map: $color-palette, $key: sixth);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -284,8 +441,8 @@ code {
     font-size: 40px;
     line-height: 47px;
     width: 160px;
-    color: map-get($map: $color-palette, $key: tenth);
-    border-bottom: solid 5px map-get($map: $color-palette, $key: tenth);
+    color: map-get($map: $color-palette, $key: sixth);
+    border-bottom: solid 5px map-get($map: $color-palette, $key: sixth);
     margin-bottom: 25px;
     position: relative;
     left: 55%;
@@ -300,7 +457,7 @@ code {
   width: 100vw;
   height: fit-content;
   padding: 40px;
-  background: map-get($map: $color-palette, $key: tenth);
+  background: map-get($map: $color-palette, $key: sixth);
 
   &__container {
     width: 100%;
@@ -367,9 +524,18 @@ code {
   }
 
   &__text {
+    &--center {
+      text-align: center;
+    }
+
     &--bold {
       font-weight: 700;
       padding: 0px;
+    }
+
+    &--user-select-none {
+      user-select: none;
+      padding-bottom: 0px;
     }
   }
 
@@ -393,15 +559,28 @@ code {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: map-get($map: $color-palette, $key: tenth);
+    color: map-get($map: $color-palette, $key: sixth);
     user-select: none;
 
     &:hover,
     &:focus,
     &:active {
-      color: map-get($map: $color-palette, $key: tenth);
+      color: map-get($map: $color-palette, $key: sixth);
       background: map-get($map: $color-palette, $key: second);
     }
+
+    &:disabled {
+      color: map-get($map: $color-palette, $key: first);
+      background: map-get($map: $color-palette, $key: fifth);
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: map-get($map: $color-palette, $key: first);
+        background: map-get($map: $color-palette, $key: fifth);
+      }
+    }
+
   }
 
   .imc-card {
@@ -448,13 +627,104 @@ code {
   }
 }
 
+.paginator {
+  margin-top: 50px;
+  padding: 10px 30px;
+  width: 344px;
+  height: 60px;
+  background: map-get($map: $color-palette, $key: sixth);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  &__button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    color: map-get($map: $color-palette, $key: first);
+    background: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: map-get($map: $color-palette, $key: second);
+    }
+  }
+
+  &__page {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 23px;
+    user-select: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: map-get($map: $color-palette, $key: first);
+    color: map-get($map: $color-palette, $key: sixth);
+  }
+}
+
+.user-modal {
+  &__title {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: map-get($map: $color-palette, $key: first);
+    text-align: center;
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: map-get($map: $color-palette, $key: first);
+    background: map-get($map: $color-palette, $key: sixth);
+    border: none;
+    border-bottom: 1px solid map-get($map: $color-palette, $key: second);
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+  }
+}
+
+.json {
+  &-form {
+    width: 100%;
+    height: 370px;
+    overflow-y: scroll;
+  }
+
+  &-area {
+    resize: none;
+    width: 100%;
+    height: 450px;
+    background: map-get($map: $color-palette, $key: sixth);
+    color: map-get($map: $color-palette, $key: first);
+    border: none;
+    border-bottom: 1px solid map-get($map: $color-palette, $key: second);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 30px;
+
+    &:focus-visible {
+      outline: none;
+      border-bottom: 2px solid map-get($map: $color-palette, $key: first);
+    }
+  }
+}
+
 .footer {
   padding-top: 50px;
   padding-bottom: 82px;
   user-select: none;
 
   &__repo {
-    color: map-get($map: $color-palette, $key: tenth);
+    color: map-get($map: $color-palette, $key: sixth);
     cursor: pointer;
     text-decoration: none;
 
