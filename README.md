@@ -101,20 +101,13 @@ El proyecto cuenta con la siguiente estructura:
 
 ---
 
-**assets
---- images
-lib
---- bootstrap
---- --- css
---- --- js
-pages
-static
---- css
---- js
-index.html
-LICENSE
-README.md
-**
+**assets -> images**
+**lib -> bootstrap-> (css - js)**
+**pages**
+**static -> (css - js)**
+**index.html**
+**LICENSE**
+**README.md**
 
 ---
 
